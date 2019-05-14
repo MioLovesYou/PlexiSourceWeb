@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  
+  <head>
+    <title>Source code</title>
+    <meta name="description" content="Plexi's source code">
+    <link id="favicon" rel="icon" href="https://cdn.discordapp.com/icons/343572980351107077/5afb9e4d2eb0f09ada16bd129ebf422f.webp?" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js" defer></script>
+  </head>
+  
+
+  <body>
+    <header>
+      <h1>
+        <%=  %>
+      </h1>
+    </header>
+
+    <main>
+          <!-- Navigation bar -->
+      <div class="navigationBar">
+        <a class="navigationItem" href="/"><span>Source</span></a>
+        <a class="navigationItem" href="/commands"><span>ECT</span></a>
+        <a class="navigationItem" href="/wiki"><span>ECT</span></a>
+      </div>
+
+      <div style="background-color: rgba(256, 256, 256, 0.1); top: 20%; position: absolute; width: 98%; padding: 20px 25px 20px 25px; color: white; float: left;">      
+        <form action="/upload" target="_blank" method="POST" onsubmit="return validateForm('submissionForm', 'username')" name="submissionForm">
+          Username:
+          <br>
+          <input type="text" name="username" class="usernameBox" placeholder="Your name..">
+          Difficulty:
+          <br>
+          <select id="difficulty" name="difficulty">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+          <br>
+          Sourcecode:
+          <br>
+          <textarea name="source" class="sourceCodeBox" cols="40" rows="3"></textarea>
+          <br><br>
+          <input type="submit" value="Submit" class="submitButton">
+        </form>
+        
+      </div>
+      <script>
+        function validateForm(form, inputName) {
+          var x = document.forms[form][inputName].value;
+          if (x == "") {
+            alert("Name must be filled out");
+            return false;
+          }
+        }
+        </script>
+
+    </main>
+  </body>
+</html>

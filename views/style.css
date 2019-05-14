@@ -1,0 +1,112 @@
+  /* Primary CSS */
+body {
+  margin: 0;
+  font-family: raleway, Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+  opacity: 0;
+  animation-name: fadeIn;
+  width: 100%;
+  animation-duration: .8s; 
+  -webkit-animation-fill-mode: forwards;
+  max-width: 100%;
+  background-color: #000000;
+}
+
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+/* Navigation bar */
+
+.navigationBar {
+  user-select: none;
+  background-color: #5660af;
+  z-index: 500;
+  width: 100%;
+  height: 50px;
+  top: 0%;
+  color: #504d4a;
+  position: fixed;
+  -webkit-box-shadow: 0px -128px 52px 111px rgba(56,130,193,1);
+  -moz-box-shadow: 0px -128px 52px 111px rgba(56,130,193,1);
+  box-shadow: 0px -128px 52px 111px rgba(56,130,193,1);
+}
+
+.navigationItem {
+  float: left;
+  color: #f5eded;
+  text-decoration: none;
+  text-align: center;
+  padding: 14px 15px;
+  height: 20px;
+  font-size: 17.5px;
+  text-shadow: 0px 0px 3px #cccccc;
+}
+
+.navigationItem:hover {
+  color: #e1e1e1;
+  text-shadow: 0px 0px 5px #aaaaaa;
+}
+
+/* Table */
+
+table {
+  position: absolute;
+  top: 20%;
+  width: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+table, th, td {
+  border: 1px solid rgba(256, 256, 256, 0.15);
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 15px;
+  text-align: center;
+  color: white;
+}
+
+
+/* Submitting */
+.sourceCodeBox {
+  background: #303030;
+  width: 50%;
+  height: 500px;
+  border: 1px solid #212121;
+  border-radius: 5px;
+  resize: none;
+  color: #b2b2b2;
+}
+
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+
+.submitButton {
+  background-color: #3882c1;
+  color: white;
+  height: 30px;
+  width: 20%;
+  left: 50%;
+  border-radius: 5px;
+  border: 2px solid #5a5dae;
+  cursor: pointer;
+}

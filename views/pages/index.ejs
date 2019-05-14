@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Source code</title>
+    <meta name="description" content="Plexi's source code">
+    <link id="favicon" rel="icon" href="https://cdn.discordapp.com/icons/343572980351107077/5afb9e4d2eb0f09ada16bd129ebf422f.webp?" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js" defer></script>
+  </head>
+  
+
+  <body>
+    <header>
+      <h1>
+        <%=  %>
+      </h1>
+    </header>
+
+    <main>
+          <!-- Navigation bar -->
+      <div class="navigationBar">
+        <a class="navigationItem" href="/"><span>Source</span></a>
+        <a class="navigationItem" href="/commands"><span>ECT</span></a>
+        <a class="navigationItem" href="/wiki"><span>ECT</span></a>
+      </div>
+
+      
+      <table>
+        <tr>
+          <th>From</th>
+          <th>Title</th> 
+          <th>Rating</th>
+        </tr>
+        <% data.map(i => {%>
+        <tr>      
+          <td><%= i._id %></td>
+          <td><%= i.firstname %></td>
+          <td><%= i.lastname %></td>
+        </tr>
+        <% }); %>
+      </table>
+
+    </main>
+  </body>
+</html>
