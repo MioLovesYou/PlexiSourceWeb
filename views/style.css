@@ -9,7 +9,7 @@ body {
   animation-duration: .8s; 
   -webkit-animation-fill-mode: forwards;
   max-width: 100%;
-  background-color: #000000;
+  background-color: #313131;
 }
 
 
@@ -91,11 +91,13 @@ th, td {
 }
 
 input[type=text] {
+  background-color: #303030;
   width: 50%;
   padding: 12px 20px;
   margin: 8px 0;
+  color: #e0e0e0;
   display: inline-block;
-  border: 1px solid #ccc;
+  border: 1px solid #212121;
   border-radius: 4px;
   box-sizing: border-box;
 }
