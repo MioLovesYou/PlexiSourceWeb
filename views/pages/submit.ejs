@@ -39,7 +39,7 @@
           </p>
           <br>
           
-          <input type="text" name="username" class="usernameBox" placeholder="Your name..">
+          <input type="text" name="username" class="usernameBox" onkeyup="usernameCheck(this.value)" placeholder="Your name..">
           <br><br>
           
           <p class='inputTitle'>
@@ -75,12 +75,14 @@
         
       </div>
       <script>
-        var errors = [];
         var usernameCheck = x => {
+          var errors = [];
           if (x.length < 2) errors.push(`Username can not be shorter than 2 characters.`);
           if (x.length > 32) errors.push(`Username can not be longer than 32 characters.`);
           if (x.includes("\`") || x.includes("\'") || x.includes("\"") || x.includes("@") || x.includes("#") || x.includes(":")) errors.push(`Names cannot contain the following substrings: '@', '#', ':', or any quotation`);
-          if (errors.length > 0) 
+          if (errors.length > 0) document.getElementsByClassName('usernameBox')[0].style.boxShadow = '0px 0px 15px -2px rgba(255,73,73,0.87)';
+          console.log(errors);
+          return errors;
         }
         </script>
 
