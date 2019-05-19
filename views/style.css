@@ -9,7 +9,7 @@ body {
   animation-duration: .8s; 
   -webkit-animation-fill-mode: forwards;
   max-width: 100%;
-  background-color: #000000;
+  background-color: #313131;
 }
 
 
@@ -31,13 +31,13 @@ body {
   background-color: #5660af;
   z-index: 500;
   width: 100%;
-  height: 50px;
+  height: 60px;
   top: 0%;
   color: #504d4a;
   position: fixed;
-  -webkit-box-shadow: 0px -128px 52px 111px rgba(56,130,193,1);
-  -moz-box-shadow: 0px -128px 52px 111px rgba(56,130,193,1);
-  box-shadow: 0px -128px 52px 111px rgba(56,130,193,1);
+  -webkit-box-shadow: 0px -140px 52px 111px rgba(56,130,193,1);
+  -moz-box-shadow: 0px -140px 52px 111px rgba(56,130,193,1);
+  box-shadow: 0px -140px 52px 111px rgba(56,130,193,1);
 }
 
 .navigationItem {
@@ -45,9 +45,9 @@ body {
   color: #f5eded;
   text-decoration: none;
   text-align: center;
-  padding: 14px 15px;
+  padding: 19.5px 21.5px;
   height: 20px;
-  font-size: 17.5px;
+  font-size: 18px;
   text-shadow: 0px 0px 3px #cccccc;
 }
 
@@ -77,8 +77,19 @@ th, td {
   color: white;
 }
 
+[data-href] {
+  cursor: pointer;
+}
+
+.row:hover {
+  background-color: #515151;
+}
+
+
+
 
 /* Submitting */
+
 .sourceCodeBox {
   background: #303030;
   width: 50%;
@@ -87,26 +98,63 @@ th, td {
   border-radius: 5px;
   resize: none;
   color: #b2b2b2;
+  transform: translateX(50%);
 }
 
 input[type=text] {
-  width: 100%;
+  background-color: #303030;
+  width: 50%;
   padding: 12px 20px;
   margin: 8px 0;
+  color: #e0e0e0;
   display: inline-block;
-  border: 1px solid #ccc;
+  border: 1px solid #212121;
   border-radius: 4px;
+  transform: translateX(50%);
   box-sizing: border-box;
 }
 
 
 .submitButton {
   background-color: #3882c1;
-  color: white;
-  height: 30px;
-  width: 20%;
-  left: 50%;
+  color: #cee8ff;
+  height: 40px;
+  width: 50%;
+  padding: 3px;
+  text-align: center;
+  font-size: 20px;
   border-radius: 5px;
-  border: 2px solid #5a5dae;
+  border: none;
   cursor: pointer;
+  transform: translateX(50%);
+}
+
+.submitButton:hover {
+  background-color: #3272a8;
+  text-shadow: 2px 2px 12px #282828;
+}
+
+#difficulty {
+  background-color: #303030;
+  border: 1px solid #212121;
+  border-radius: 4px;
+  padding: 5px 6px 5px 6px;
+  color: #c4c4c4;
+  display: block;
+  margin: 0 auto;
+}
+
+.inputTitle {
+  color: #e5e5e5;
+  text-align: center;
+}
+
+#spacingSelector {
+  background-color: #303030;
+  border: 1px solid #212121;
+  border-radius: 4px;
+  padding: 5px 6px 5px 6px;
+  color: #c4c4c4;
+  display: block;
+  margin: 0 auto;
 }

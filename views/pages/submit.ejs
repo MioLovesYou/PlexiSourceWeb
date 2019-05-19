@@ -25,41 +25,142 @@
           <!-- Navigation bar -->
       <div class="navigationBar">
         <a class="navigationItem" href="/"><span>Source</span></a>
-        <a class="navigationItem" href="/commands"><span>ECT</span></a>
+        <a class="navigationItem" href="/submit"><span>Submit</span></a>
         <a class="navigationItem" href="/wiki"><span>ECT</span></a>
+        <a class="navigationItem" href="https://discord.gg/plexiDev" style="float: right; padding: 5px;"><img src="https://cdn.discordapp.com/icons/343572980351107077/5afb9e4d2eb0f09ada16bd129ebf422f.webp?" alt='Logo' style="box-shadow: 0px 0px 7px 6px rgba(13,23,56,0.71); height: 48px; width: 48px; border-radius: 4px;"></a>
       </div>
 
-      <div style="background-color: rgba(256, 256, 256, 0.1); top: 20%; position: absolute; width: 98%; padding: 20px 25px 20px 25px; color: white; float: left;">      
-        <form action="/upload" target="_blank" method="POST" onsubmit="return validateForm('submissionForm', 'username')" name="submissionForm">
-          Username:
+      <div style="top: 10%; position: absolute; width: 98%; padding: 20px 25px 20px 25px; color: white; display: inline; float: none;">      
+        
+        <!-- Damn this gets unreadable -->
+        <form action="/upload" target="_blank" method="POST" onsubmit="return validateForm(this)" name="submissionForm" autocomplete="off">
+          <p class='inputTitle'>
+            Username:
+          </p>
           <br>
-          <input type="text" name="username" class="usernameBox" placeholder="Your name..">
-          Difficulty:
-          <br>
-          <select id="difficulty" name="difficulty">
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
-          </select>
-          <br>
-          Sourcecode:
-          <br>
-          <textarea name="source" class="sourceCodeBox" cols="40" rows="3"></textarea>
+          
+          <input type="text" name="username" class="usernameBox" id='username' onkeyup="usernameCheck(this.value)" placeholder="Your name..">
           <br><br>
+          
+          <p class='inputTitle'>
+            Tags:
+          </p>
+          <br>
+          
+          <input type="text" id='tags' name="tags" onkeyup="tagsCheck(this.value)" class="tagsBox" placeholder="Split tags with commas.">
+          <br><br>
+          
+          <p class='inputTitle'>
+          Difficulty:
+          </p>
+          <br>
+          
+          <select id="difficulty" name="difficulty">
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+          </select>
+          <br><br>
+          
+          <p class='inputTitle'>
+            Title:
+          </p>
+          <br>
+          
+          <input type="text" name="title" class="titleBox" id='title' onkeyup="titleCheck(this.value)" placeholder="Your name..">
+          <br><br>
+          
+          <p class='inputTitle'>
+            Sourcecode:
+          </p>
+          <br>
+          
+          <textarea name="source" onkeyup="sourcecodeCheck(this.value)" class="sourceCodeBox" cols="40" rows="3" id='sc' spellcheck="false"></textarea>
+          <p class='inputTitle'>
+            Spacing:
+          </p>
+          <select id="spacingSelector" onchange="something(this)" >
+            <option id='spacingItem' value="1">2 spaces</option>
+            <option id='spacingItem' value="2">3 spaces</option>
+            <option id='spacingItem' value="3">4 spaces</option>
+          </select>
+          <br><br>
+          
           <input type="submit" value="Submit" class="submitButton">
         </form>
         
       </div>
       <script>
-        function validateForm(form, inputName) {
-          var x = document.forms[form][inputName].value;
-          if (x == "") {
-            alert("Name must be filled out");
-            return false;
+        var spacing = 2;
+        var something = x => {
+          spacing = x.options[x.selectedIndex].value;
+        }
+        for (var i = 0; i < document.getElementsByTagName('textarea').length; i ++){
+          document.getElementsByTagName('textarea')[i].onkeydown = function(e) {
+            if(e.keyCode === 9 || e.which === 9) {
+              e.preventDefault();
+              var s = this.selectionStart;
+              this.value = this.value.substring(0,this.selectionStart).concat(" ".repeat(spacing)).concat(this.value.substring(this.selectionEnd));
+              this.selectionEnd = s + spacing;
+            }
           }
         }
-        </script>
+        
+        var swearWords = ['fuck', 'nigger'];
+        var usernameCheck = x => {
+          var errors = [];
+          if (x.match(/['`"@#:]/g)) errors.push(`Names cannot contain the following substrings: '@', '#', ':', or any quotation`);
+          if (x.length < 2) errors.push(`Username can not be shorter than 2 characters.`);
+          if (x.length > 32) errors.push(`Username can not be longer than 32 characters.`);
+          if (swearWords.some(xI => x.toLowerCase().replace(/[`!@#$%^/\&*)(_+,.?":{}|<>" +"]/g, "").includes(xI))) errors.push(`No swear words allowed.`);
+          if (errors.length > 0) document.getElementsByClassName('usernameBox')[0].style.boxShadow = '0px 0px 15px -2px rgba(255,73,73,0.87)';
+          else document.getElementsByClassName('usernameBox')[0].style.boxShadow = `none`;
+          console.log(errors);
+          return errors;
+        }
+        var titleCheck = x => {
+          var errors = [];
+          if (x.length < 2) errors.push(`2 characters required for title.`);
+          if (x.length > 16) errors.push(`16 characters maximum for title.`);
+          if (swearWords.some(xI => x.toLowerCase().replace(/[`!@#$%^/\&*)(_+,.?":{}|<>" +"]/g, "").includes(xI))) errors.push(`No swear words allowed.`);
+          console.log(errors);
+          console.log(errors.length);
+          if (errors.length > 0) document.getElementsByClassName('titleBox')[0].style.boxShadow = '0px 0px 15px -2px rgba(255,73,73,0.87)';
+          else document.getElementsByClassName('titleBox')[0].style.boxShadow = `none`;
+          return errors;
+        }
+        var tagsCheck = x => {
+          var errors = [];
+          if (x.length === 0) errors.push(`No tags supplied.`);
+          if (x.includes(" ")) errors.push(`No spaces allowed in tags.`);
+          if (x.match(/[`!@#$%^/\&*)(_+?":{}|<>" +"]/g)) errors.push(`Special characters other than , and . are not permitted in tags.`);
+          if (errors.length > 0) document.getElementsByClassName('tagsBox')[0].style.boxShadow = '0px 0px 15px -2px rgba(255,73,73,0.87)';
+          else document.getElementsByClassName('tagsBox')[0].style.boxShadow = `none`;
 
+          console.log(errors);
+          return errors;
+        }
+        var sourcecodeCheck = x => {
+          var errors = [];
+          if (x.length < 40) errors.push(`40 characters required for source-code.`);
+          if (x.length > 2000) errors.push(`2000 characters maximum for source-code.`);
+          if (swearWords.some(xI => x.toLowerCase().replace(/[`!@#$%^/\&*)(_+,.?":{}|<>" +"]/g, "").includes(xI))) errors.push(`No swear words allowed.`);
+          console.log(errors);
+          console.log(errors.length);
+          if (errors.length > 0) document.getElementsByClassName('sourceCodeBox')[0].style.boxShadow = '0px 0px 15px -2px rgba(255,73,73,0.87)';
+          else document.getElementsByClassName('sourceCodeBox')[0].style.boxShadow = `none`;
+          return errors;
+        }
+        var validateForm = x => {
+          var errors = [usernameCheck(document.getElementById('username').value), tagsCheck(document.getElementById('tags').value), sourcecodeCheck(document.getElementById('sc').value)];
+          console.log(errors);
+          errors = errors.reduce(( a, b ) => a.concat(b));
+          if (errors.length > 0) {
+            alert(errors.join('\n'));
+            return false;
+          } else return true;
+        }
+        </script>
     </main>
   </body>
 </html>
