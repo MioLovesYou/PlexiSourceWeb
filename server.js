@@ -34,7 +34,7 @@ app.get('/', function(req, res) {
     res.render('pages/index', {
       data: result,
       req: req
-  })
+    });
   });
 });
 
@@ -45,13 +45,16 @@ app.get('/submit', function(req, res) {
     res.render('pages/submit', {
       data: result,
       req: req
-  })
+    });
   });
 });
 
 app.post("/upload", (request, response) => {
+   // if (!request.body.source || !request.body.tags || !request.body.APIKey) response.send(`Invalid. Missing some properties: ${request.body.source ? '' : 'Source'} ${request.body.tags ? '' : 'Tags'} ${request.body.APIKey ? '' : 'API Key'}`);
+  request.body.tags = request.body.tags.split(`,`);
+  request.body.votes = {up: 0, down: 0};
+  request.body.ID = ((Math.floor(Math.random() * 100000000) + Date.now()) * Math.random()).toString();
   collection.insert(request.body, (error, result) => {
-    if (!request.body.source || !request.body.tags || !request.body.APIKey) response.status.send(`Invalid. Missing some properties: ${request.body.source ? '' : 'Source'} ${request.body.tags ? '' : 'Tags'} ${request.body.APIKey ? '' : 'API Key'}`);
     if (error) return response.status(500).send(error);
     response.send(result.result);
   });
@@ -62,6 +65,19 @@ app.get("/info", (request, response) => {
     if (error) return response.status(500).send(error);
     response.send(result);
   });
+});
+
+app.get('/source/:id', function(req, res) {
+  collection.find({}).toArray((error, result) => {
+    console.log(result.map(i => console.log(i.ID === req.params.id.toString())));
+  });
+  collection.find({ID: req.params.id}).toArray((error, result) => {
+    if (result.length === 0) res.send(`Invalid ID.`);
+     res.render('pages/sourceCode', {
+      data: result
+    });
+  });
+  console.log(req.params.id)
 });
 
 // 404 Page (Couldn't be found)

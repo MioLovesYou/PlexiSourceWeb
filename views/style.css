@@ -35,9 +35,9 @@ body {
   top: 0%;
   color: #504d4a;
   position: fixed;
-  -webkit-box-shadow: 0px -128px 52px 111px rgba(56,130,193,1);
-  -moz-box-shadow: 0px -128px 52px 111px rgba(56,130,193,1);
-  box-shadow: 0px -128px 52px 111px rgba(56,130,193,1);
+  -webkit-box-shadow: 0px -140px 52px 111px rgba(56,130,193,1);
+  -moz-box-shadow: 0px -140px 52px 111px rgba(56,130,193,1);
+  box-shadow: 0px -140px 52px 111px rgba(56,130,193,1);
 }
 
 .navigationItem {
@@ -45,7 +45,7 @@ body {
   color: #f5eded;
   text-decoration: none;
   text-align: center;
-  padding: 18px 19px;
+  padding: 19.5px 21.5px;
   height: 20px;
   font-size: 18px;
   text-shadow: 0px 0px 3px #cccccc;
@@ -77,6 +77,16 @@ th, td {
   color: white;
 }
 
+[data-href] {
+  cursor: pointer;
+}
+
+.row:hover {
+  background-color: #515151;
+}
+
+
+
 
 /* Submitting */
 
@@ -88,6 +98,7 @@ th, td {
   border-radius: 5px;
   resize: none;
   color: #b2b2b2;
+  transform: translateX(50%);
 }
 
 input[type=text] {
@@ -99,6 +110,7 @@ input[type=text] {
   display: inline-block;
   border: 1px solid #212121;
   border-radius: 4px;
+  transform: translateX(50%);
   box-sizing: border-box;
 }
 
@@ -114,18 +126,12 @@ input[type=text] {
   border-radius: 5px;
   border: none;
   cursor: pointer;
+  transform: translateX(50%);
 }
 
 .submitButton:hover {
   background-color: #3272a8;
   text-shadow: 2px 2px 12px #282828;
-}
-
-option {
-  background-color: #303030;
-  border: 1px solid #212121;
-  border-radius: 4px;
-  padding: 4px 5px 4px 5px;
 }
 
 #difficulty {
@@ -134,8 +140,21 @@ option {
   border-radius: 4px;
   padding: 5px 6px 5px 6px;
   color: #c4c4c4;
+  display: block;
+  margin: 0 auto;
 }
 
 .inputTitle {
   color: #e5e5e5;
+  text-align: center;
+}
+
+#spacingSelector {
+  background-color: #303030;
+  border: 1px solid #212121;
+  border-radius: 4px;
+  padding: 5px 6px 5px 6px;
+  color: #c4c4c4;
+  display: block;
+  margin: 0 auto;
 }

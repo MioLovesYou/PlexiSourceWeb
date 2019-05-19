@@ -9,16 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/style.css">
     <script src="/script.js" defer></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   
-  <script>
-  jQuery(document).ready(function($) {
-    $('*[data-href]').on('click', function() {
-      window.location = $(this).data("href");
-    });
-  });
-  </script>
 
   <body>
     <header>
@@ -36,20 +28,31 @@
         <a class="navigationItem" href="https://discord.gg/plexiDev" style="float: right; padding: 5px;"><img src="https://cdn.discordapp.com/icons/343572980351107077/5afb9e4d2eb0f09ada16bd129ebf422f.webp?" alt='Logo' style="box-shadow: 0px 0px 7px 6px rgba(13,23,56,0.71); height: 48px; width: 48px; border-radius: 4px;"></a>
       </div>
 
-      
+      <div style="top: 10%; position: absolute; width: 98%; padding: 20px 75px 20px 75px; display: inline; float: none;">
+        <h1 class="inputTitle">
+          <%= `${data[0].username}'s \"${data[0].title}\"` %>
+        </h1>
+        <br>
+        <h4 class="inputTitle" style="float: left;">
+          <%= `Difficulty: ${data[0].difficulty}` %>
+        </h4>
+        <br>
+        <h4 class="inputTitle" style="float: left;">
+          <span style="-webkit-transform: rotate(180deg);">&#8249;</span>
+        </h4>
+      </div>
+      <% console.log(data); %>
       <table>
         <tr>
           <th>From</th>
           <th>Title</th> 
           <th>Rating</th>
-          <th>Difficulty</th>
         </tr>
         <% data.map(i => {%>
-        <tr class="row" data-href="source/<%=i.ID%>">      
-          <td><%= i.username %></td>
+        <tr>      
+          <td><%= i._id %></td>
           <td><%= i.title %></td>
-          <td><%= i.votes.up - i.votes.down %></td>
-          <td><%= i.difficulty %></td>
+          <td><%= i.lastname %></td>
         </tr>
         <% }); %>
       </table>
