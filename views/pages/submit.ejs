@@ -10,7 +10,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/style.css">
-    <script src="/script.js" defer></script>
   </head>
   
 
@@ -24,9 +23,9 @@
     <main>
           <!-- Navigation bar -->
       <div class="navigationBar">
+        <a class="navigationItem" href="/login"><span>Login</span></a>
         <a class="navigationItem" href="/"><span>Source</span></a>
         <a class="navigationItem" href="/submit"><span>Submit</span></a>
-        <a class="navigationItem" href="/wiki"><span>ECT</span></a>
         <a class="navigationItem" href="https://discord.gg/plexiDev" style="float: right; padding: 5px;"><img src="https://cdn.discordapp.com/icons/343572980351107077/5afb9e4d2eb0f09ada16bd129ebf422f.webp?" alt='Logo' style="box-shadow: 0px 0px 7px 6px rgba(13,23,56,0.71); height: 48px; width: 48px; border-radius: 4px;"></a>
       </div>
 
@@ -91,22 +90,23 @@
         
       </div>
       <script>
+        
         var spacing = 2;
         var something = x => {
           spacing = x.options[x.selectedIndex].value;
         }
         for (var i = 0; i < document.getElementsByTagName('textarea').length; i ++){
           document.getElementsByTagName('textarea')[i].onkeydown = function(e) {
-            if(e.keyCode === 9 || e.which === 9) {
+            if (e.keyCode === 9 || e.which === 9) {
               e.preventDefault();
               var s = this.selectionStart;
-              this.value = this.value.substring(0,this.selectionStart).concat(" ".repeat(spacing)).concat(this.value.substring(this.selectionEnd));
+              this.value = this.value.substring(0, this.selectionStart).concat(" ".repeat(spacing)).concat(this.value.substring(this.selectionEnd));
               this.selectionEnd = s + spacing;
             }
           }
         }
         
-        var swearWords = ['fuck', 'nigger'];
+        // array of swear words i don't wanna show lol
         var usernameCheck = x => {
           var errors = [];
           if (x.match(/['`"@#:]/g)) errors.push(`Names cannot contain the following substrings: '@', '#', ':', or any quotation`);

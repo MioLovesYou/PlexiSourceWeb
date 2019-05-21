@@ -12,7 +12,10 @@
   "dependencies": {
     "ejs": "^2.6.1",
     "express": "^4.16.4",
-    "mongodb": "^3.2.4"
+    "mongodb": "^3.2.4",
+    "cookie-parser": "^1.4.4",
+    "form-data": "^2.3.3",
+    "node-fetch": "^2.6.0"
   },
   "engines": {
     "node": "8.x"

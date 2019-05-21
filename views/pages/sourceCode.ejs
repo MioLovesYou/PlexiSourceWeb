@@ -8,27 +8,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/style.css">
-    <script src="/script.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   
-
   <body>
-    <header>
-      <h1>
-        <%=  %>
-      </h1>
-    </header>
-
     <main>
           <!-- Navigation bar -->
       <div class="navigationBar">
+        <a class="navigationItem" href="/login"><span>Login</span></a>
         <a class="navigationItem" href="/"><span>Source</span></a>
         <a class="navigationItem" href="/submit"><span>Submit</span></a>
-        <a class="navigationItem" href="/wiki"><span>ECT</span></a>
         <a class="navigationItem" href="https://discord.gg/plexiDev" style="float: right; padding: 5px;"><img src="https://cdn.discordapp.com/icons/343572980351107077/5afb9e4d2eb0f09ada16bd129ebf422f.webp?" alt='Logo' style="box-shadow: 0px 0px 7px 6px rgba(13,23,56,0.71); height: 48px; width: 48px; border-radius: 4px;"></a>
       </div>
 
-      <div style="top: 10%; position: absolute; width: 98%; padding: 20px 75px 20px 75px; display: inline; float: none;">
+      <div style="top: 10%; position: absolute; width: 94%; padding: 20px 75px 20px 75px; display: inline; float: none;">
         <h1 class="inputTitle">
           <%= `${data[0].username}'s \"${data[0].title}\"` %>
         </h1>
@@ -37,26 +30,38 @@
           <%= `Difficulty: ${data[0].difficulty}` %>
         </h4>
         <br>
-        <h4 class="inputTitle" style="float: left;">
-          <span style="-webkit-transform: rotate(180deg);">&#8249;</span>
-        </h4>
+        <div style="float: right; display: inline-block; vertical-align: middle;">
+          <span class="upvote" onclick="updateVotes(1)">&#8249;</span>
+          <br>
+          <span style="font-size: 34px; color: #c4c2c2;" id="votes"></span>
+          <br>
+          <span class="downvote" onclick="updateVotes(-1)">&#8249;</span>
+        </div>
+        <br><br><br><br><br><br><br><br><br><br>
+        
+        <div class="sourceCodeBoxOutput">
+          <h5 style="color: #c4c2c2;" id='sourceOutput'>
+          </h5>
+        </div>
       </div>
-      <% console.log(data); %>
-      <table>
-        <tr>
-          <th>From</th>
-          <th>Title</th> 
-          <th>Rating</th>
-        </tr>
-        <% data.map(i => {%>
-        <tr>      
-          <td><%= i._id %></td>
-          <td><%= i.title %></td>
-          <td><%= i.lastname %></td>
-        </tr>
-        <% }); %>
-      </table>
-
+      
+      <script>
+        var votes = <%= data[0].vote %>;
+        document.getElementById(`votes`).textContent = votes;
+        const updateVotes = x => {
+          $.post("/vote", {
+            ID: <%= data[0].ID %>,
+            score: x
+          }, function(data, status) {
+            if (status !== `success`) {
+              alert(`An error seemed to have occured when trying to submit your vote.\nTry again later.`);
+              return;
+            }
+            votes += x;
+            document.getElementById(`votes`).textContent = votes;
+          });
+        }
+      </script>
     </main>
   </body>
 </html>
