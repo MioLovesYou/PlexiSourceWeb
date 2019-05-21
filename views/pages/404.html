@@ -21,34 +21,23 @@
   </script>
 
   <body>
-    <main>
+    <main style="max-width: 100%; width: 100%;">
           <!-- Navigation bar -->
       <div class="navigationBar">
         <a class="navigationItem" href="/login"><span>Login</span></a>
         <a class="navigationItem" href="/"><span>Source</span></a>
         <a class="navigationItem" href="/submit"><span>Submit</span></a>
-        <a class="navigationItem" href="https://discord.gg/plexiDev" style="float: right; padding: 5px;"><img src="https://cdn.discordapp.com/icons/343572980351107077/5afb9e4d2eb0f09ada16bd129ebf422f.webp?" alt='Logo' class='plexiLogo'></a>
+        <a class="navigationItem" href="https://discord.gg/plexiDev" style="float: right; padding: 5px;"><img class='plexiLogo' src="https://cdn.discordapp.com/icons/343572980351107077/5afb9e4d2eb0f09ada16bd129ebf422f.webp?"></a>
       </div>
-
-      <h2 id="gay">
       
-      </h2>
-      <table>
-        <tr>
-          <th>From</th>
-          <th>Title</th> 
-          <th>Rating</th>
-          <th>Difficulty</th>
-        </tr>
-        <% data.map(i => { %>
-        <tr class="row" data-href="source/<%=i.ID%>">      
-          <td><%= i.username %></td>
-          <td><%= i.title %></td>
-          <td><%= i.vote %></td>
-          <td class=<%= i.difficulty %>><%= i.difficulty %></td>
-        </tr>
-        <% }); %>
-      </table>
+      <div style="margin-top: 10%; transform: translateX(75%); width: 40%; background-color: rgba(229, 229, 229, 0.2); border-radius: 5px;">
+        <h1 style="font-size: 90px; text-align: center; color: #e5e5e5;">
+          404
+        </h1>
+        <h6 style="font-size: 14px; text-align: center; color: #f7f7f7; background-color: rgba(100, 100, 100, 0.6);">
+          Oopsy Whoopsy, it seems we made a fricky whicky. A boo boom, baa baa. We aw sooowww swworry fowr any inconwinencyysz
+        </h6>
+      </div>
     </main>
   </body>
 </html>
