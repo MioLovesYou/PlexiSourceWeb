@@ -123,7 +123,7 @@ app.get('/loggingIn', async function(req, res) {
     res.cookie('accessToken', fetched.access_token, {expire: fetched.expires_in * 1000});
     console.log(fetched);
     tokens.insertOne({accessToken: fetched.access_token, refreshToken: fetched.refresh_token}, (error, result) => {
-      if (error) return res.send(`Something fricked up. Our tecniktians aw werkin wwery hard 2 fix thiz. soooo swworry.`);
+      if (error) return res.send(`Something fricked up.);
     });
     res.redirect('/');
   } 
